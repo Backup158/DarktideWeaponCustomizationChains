@@ -25,3 +25,4 @@ I only added chains to weapons that the MT plugin has added chain bodies to. Thi
 2) Go to `function mod.get_weapons()`
 3) Inside of that, remove the `--` from `"forcesword_2h_p1_m1",` and `"powersword_2h_p1_m1",`
 
+If you would like to make a specific alignment, open the same file and scroll to the bottom. I left some basic instructions there.
