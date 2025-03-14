@@ -23,10 +23,6 @@ end
 -- Returns names of melee weapons
 function mod.get_weapons()
     return {
-        -- Not Necessary
-        --"chainaxe_p1_m1",
-        --"chainsword_2h_p1_m1",
-        --"chainsword_p1_m1",
         -- Head
         "combataxe_p1_m1",
         "combataxe_p2_m1",
@@ -39,12 +35,15 @@ function mod.get_weapons()
         "powermaul_p1_m1",
         "thunderhammer_2h_p1_m1",
         -- Blade
-        -- "forcesword_2h_p1_m1", -- Not supported yet
+        --"forcesword_2h_p1_m1", -- Not supported yet
         "forcesword_p1_m1",
         "ogryn_combatblade_p1_m1",
         --"powersword_2h_p1_m1", -- Not supported yet
         "powersword_p1_m1",
         -- Body
+        --"chainaxe_p1_m1", -- Already has chains
+        --"chainsword_2h_p1_m1", -- Already has chains
+        --"chainsword_p1_m1", -- Already has chains
         "combatknife_p1_m1",
         "combatsword_p1_m1",
         "combatsword_p2_m1",
