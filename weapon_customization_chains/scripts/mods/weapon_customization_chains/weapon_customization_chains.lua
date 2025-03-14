@@ -55,7 +55,7 @@ end
 
 -- Function Execution
 function mod.on_all_mods_loaded()
-    mod:info("WeaponCustomizationchain v" .. mod.version .. " loaded uwu nya :3")
+    mod:info("WeaponCustomizationChains v" .. mod.version .. " loaded uwu nya :3")
 
     -- Checks for other mods loaded
     local wc = get_mod("weapon_customization")
@@ -102,12 +102,11 @@ function mod.on_all_mods_loaded()
             if (type(wc.attachment[weaponClass].chain) == "table") then
                 mod:info("Correct table found: wc.attachment."..weaponClass..".chain")
             else
-                mod:error("!!! Could not find table: wc.attachment."..weaponClass..".chain")
+                mod:error("!!! Chains is in a pickle! Could not find table: wc.attachment."..weaponClass..".chain")
             end
         end
 
         -- First time creating chains for these, so I need a default unequipped
-
         table.insert(
             wc.attachment[weaponClass].chain,
             {id = "chain_default", name = "Default", no_randomize = false}
@@ -131,7 +130,7 @@ function mod.on_all_mods_loaded()
             if (type(wc.attachment_models[weaponClass]) == "table") then
                 mod:info("Correct table found: wc.attachment_models."..weaponClass)
             else
-                mod:error("!!! Could not find table: wc.attachment."..weaponClass)
+                mod:error("!!! Chains is in a pickle! Could not find table: wc.attachment."..weaponClass)
             end
         end
         --if (weaponClass == "forcesword_p1_m1") or (weaponClass == "forcesword_2h_p1_m1") or (weaponClass == "ogryn_combatblade_p1_m1") or (weaponClass == "powersword_2h_p1_m1") or (weaponClass == "powersword_p1_m1") then
@@ -196,29 +195,29 @@ function mod.on_all_mods_loaded()
         -- ########################################
         -- Inject attachment
         -- ########################################
-        wc.add_custom_attachments.chain = {"chain_list"}
+        wc.add_custom_attachments.chain = "chain_list"
         wc.chain_list = {
             "chain_default",
             "chain_chainaxe",
             "chain_2h_chain_sword",
             "chain_2h_chain_sword",
         }
-        --table.insert(
-        --    wc.reflex_sights,
-        --    "chain_default"
-        --)
-        --table.insert(
-        --    wc.reflex_sights,
-        --    "chain_chainaxe"
-        --)
-        --table.insert(
-        --    wc.reflex_sights,
-        --    "chain_2h_chain_sword"
-        --)
-        --table.insert(
-        --    wc.reflex_sights,
-        --    "chain_2h_chain_sword"
-        --)
     end
-
+    -- ########################################
+    -- Specific Fixes
+    --  These fixes are outside of the for loop, so they will only apply to the single weapon family you specify
+    --  If you want the fix to apply to every weapon, put it inside the for loop (so paste the fix in the Inject Fixes section, above the "end" right here)
+    --      Copy the fixes in made in that section, not the example fix below
+    --      The example fix is for when you want to make a fix that only applies to one weapon
+    -- ########################################
+    -- Example Fix
+    --  This fix is applied to the Power Sword, as indicated by the "powersword_p1_m1". To make it apply for other weapons, replace this name with the relevant weapon name (see mod.get_weapon() table)
+    --  For this fix, it occurs when you have equipped the chainaxe chain AND (MT dueling sword blade 1 OR MT dueling sword blade 2)
+    --table.prepend(
+    --    wc.anchors.powersword_p1_m1.fixes, {
+    --        {   dependencies =  { "chain_chainaxe", "sabre_mt_blade_01|sabre_mt_blade_02" },
+    --            chain =         { offset = true, position = vector3_box(0.0, 2.0, 0.0), rotation = vector3_box(0, 0, 0), scale = vector3_box(1.0, 1.0, 1.0) },
+    --        },
+    --    }
+    --)
 end
