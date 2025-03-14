@@ -20,5 +20,8 @@ This plugin was made to be used in addition to the MT Plugin. The chains will on
 
 Because of this, I added a warning if you don't have the MT Plugin installed. The mod won't shut down, but you will have to read and acknowledge the warning (through the settings or command). Once you acknowledge it, it won't show up anymore.
 
-I only added chains to weapons that the MT plugin has added chain bodies to. This means the Force Greatswords and Relic Blades are not included, since he hasn't updated the plugin for them yet.
+I only added chains to weapons that the MT plugin has added chain bodies to. This means the Force Greatswords and Relic Blades are not included, since he hasn't updated the plugin for them yet. If you would like to add chains to them anyways:
+1) Open `weapon_customization_chains\scripts\mods\weapon_customization_chains\weapon_customization_chains.lua` in any text editor (such as Notepad)
+2) Go to `function mod.get_weapons()`
+3) Inside of that, remove the `--` from `"forcesword_2h_p1_m1",` and `"powersword_2h_p1_m1",`
 
