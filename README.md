@@ -10,7 +10,11 @@ A [Weapon Customization](https://www.nexusmods.com/warhammer40kdarktide/mods/277
 
 Install like [any other mod](https://dmf-docs.darkti.de/#/installing-mods)
 
-Load after main plugin. The rest doesn't matter.
+Only the **bolded** entries are required. Others are optional, but this would be the ideal relative locations for them.
+> **weapon_customization**
+> for_the_drip
+> **weapon_customization_chains**
+> weapon_customization_mt_stuff
 
 # Further Details
 
