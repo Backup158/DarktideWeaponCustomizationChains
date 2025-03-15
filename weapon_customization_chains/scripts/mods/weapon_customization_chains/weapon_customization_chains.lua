@@ -80,31 +80,36 @@ function mod.on_all_mods_loaded()
     -- Initializing data before injection
     local debug = mod:get("enable_debug_mode")
     local weaponClasses = mod:get_weapons()
-    
-    -- ####################################################################
-    -- CREATING THE ATTACHMENT SLOTS
-    -- ####################################################################
-    for _, weapon in ipairs(weaponClasses) do
-        wc.attachment[weapon].chain = {}
-    end
 
     -- ####################################################################
-    -- ATTACHMENT INJECTION
+    -- ATTACHMENT CREATION AND INJECTION
     -- See the EWC Template plugin (pinned in the Darktide Modder's Discord EWC Channel) for details
+    -- Note about the table existence checks:
+    --  In the base mod, there are some exceptions the typical weapon file structure
+    --  The tactical axe marks 2 and 3 do not copy the attachment_models from tactical axe m1, but from combat axe m1 (weapon_customization_anchors.lua)
+    --  In the weapon attachment files, some weapons are missing anchors.fixes table
+    --      Tactical Axe, Sapper Shovel, Delver's Pickaxe, Crusher
+    --      which are: combataxe_p2_m1, combataxe_p3_m1, ogryn_pickaxe_2h_p1_m1, powermaul_2h_p1_m1
+    --      The MT plugin creates these, if you have it installed.
     -- ####################################################################
-    -- Loops over all ranged weapons
+    -- Loops over all relevant melee weapons
     for _, weaponClass in ipairs(weaponClasses) do
+        -- ####################################################################
+        -- CREATING THE ATTACHMENT SLOTS
+        --  The Chain slot already exists in the base plugin. It is equipped in the chain weapons (shocking!).
+        --  Because I excluded those from weaponClasses, I can create the slot for the other weapons without worrying about overwriting them.
+        --  That also means it's already localized.
+        -- ####################################################################
+        wc.attachment[weaponClass].chain = {}
         -- ########################################
         -- Inject attachment definition
         -- ########################################
-        if debug then
-            if (type(wc.attachment[weaponClass].chain) == "table") then
-                mod:info("Correct table found: wc.attachment."..weaponClass..".chain")
-            else
-                mod:error("!!! Chains is in a pickle! Could not find table: wc.attachment."..weaponClass..".chain")
-            end
+        if (type(wc.attachment[weaponClass].chain) == "table") then
+            if debug then mod:info("Table found: wc.attachment."..weaponClass..".chain") end
+        else
+            if debug then mod:error("!!! Chains is in a pickle! Could not find table: wc.attachment."..weaponClass..".chain") end
+            wc.attachment[weaponClass].chain = {}
         end
-
         -- First time creating chains for these, so I need a default unequipped
         table.insert(
             wc.attachment[weaponClass].chain,
@@ -125,12 +130,11 @@ function mod.on_all_mods_loaded()
         -- ########################################
         -- Inject attachment model
         -- ########################################
-        if debug then
-            if (type(wc.attachment_models[weaponClass]) == "table") then
-                mod:info("Correct table found: wc.attachment_models."..weaponClass)
-            else
-                mod:error("!!! Chains is in a pickle! Could not find table: wc.attachment."..weaponClass)
-            end
+        if (type(wc.attachment_models[weaponClass]) == "table") then
+            if debug then mod:info("Table found: wc.attachment_models."..weaponClass) end
+        else
+            if debug then mod:error("!!! Chains is in a pickle! Could not find table: wc.attachment."..weaponClass) end
+            wc.attachment_models[weaponClass] = {}
         end
         --if (weaponClass == "forcesword_p1_m1") or (weaponClass == "forcesword_2h_p1_m1") or (weaponClass == "ogryn_combatblade_p1_m1") or (weaponClass == "powersword_2h_p1_m1") or (weaponClass == "powersword_p1_m1") then
         if (weaponClass == "forcesword_p1_m1") or (weaponClass == "ogryn_combatblade_p1_m1") or (weaponClass == "powersword_p1_m1") then
@@ -140,7 +144,6 @@ function mod.on_all_mods_loaded()
         else
             weaponParent = "head"
         end
-
         table.merge_recursive(
             wc.attachment_models[weaponClass],
             {chain_default = {model = "", type = "chain", parent = weaponParent } }
@@ -162,6 +165,12 @@ function mod.on_all_mods_loaded()
         -- ########################################
         -- This is where the weapons are aligned
         -- ########################################
+        if (type(wc.anchors[weaponClass].fixes) == "table") then
+            if debug then mod:info("Table found: wc.anchors."..weaponClass..".fixes") end
+        else
+            if debug then mod:error("!!! Chains is in a pickle! Could not find table: wc.anchors."..weaponClass..".fixes") end
+            wc.anchors[weaponClass].fixes = {}
+        end
         -- Default case doesn't need a fix since it's invisible
         --table.prepend(
         --    wc.anchors[weaponClass].fixes, {
@@ -201,7 +210,7 @@ function mod.on_all_mods_loaded()
             "chain_2h_chain_sword",
             "chain_2h_chain_sword",
         }
-    end
+    end -- Ends for loop that iterates over most melee weapons
     -- ########################################
     -- Specific Fixes
     --  These fixes are outside of the for loop, so they will only apply to the single weapon family you specify
