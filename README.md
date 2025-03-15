@@ -12,8 +12,11 @@ Install like [any other mod](https://dmf-docs.darkti.de/#/installing-mods)
 
 Only the **bolded** entries are required. Others are optional, but this would be the ideal relative locations for them.
 > **weapon_customization**
+>
 > for_the_drip
+>
 > **weapon_customization_chains**
+>
 > weapon_customization_mt_stuff
 
 # Further Details
