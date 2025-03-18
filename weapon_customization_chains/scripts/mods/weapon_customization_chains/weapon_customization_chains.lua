@@ -1,5 +1,5 @@
 local mod = get_mod("weapon_customization_chains")
-mod.version = "1.1"
+mod.version = "1.2"
 
 -- Variables from the EWC Template
 local table = table
