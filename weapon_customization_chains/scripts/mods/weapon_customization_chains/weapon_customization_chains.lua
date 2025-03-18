@@ -121,11 +121,23 @@ function mod.on_all_mods_loaded()
         )
         table.insert(
             wc.attachment[weaponClass].chain,
-            {id = "chain_1h_chain_sword", name = "1h Chain Sword Chain", no_randomize = true}
+            {id = "chain_chainaxe_gold", name = "Chain Axe Chain (Gold)", no_randomize = true}
         )
         table.insert(
             wc.attachment[weaponClass].chain,
+            {id = "chain_1h_chain_sword", name = "1h Chain Sword Chain", no_randomize = true}
+        )
+        --table.insert(
+        --    wc.attachment[weaponClass].chain,
+        --    {id = "chain_1h_chain_sword_gold", name = "1h Chain Sword Chain (Gold)", no_randomize = true}
+        --)
+        table.insert(
+            wc.attachment[weaponClass].chain,
             {id = "chain_2h_chain_sword", name = "2h Chain Sword Chain", no_randomize = true}
+        )
+        table.insert(
+            wc.attachment[weaponClass].chain,
+            {id = "chain_2h_chain_sword_gold", name = "2h Chain Sword Chain (Gold)", no_randomize = true}
         )
         -- ########################################
         -- Inject attachment model
@@ -154,11 +166,27 @@ function mod.on_all_mods_loaded()
         )
         table.merge_recursive(
             wc.attachment_models[weaponClass],
+            {chain_chainaxe_gold = {model = _item_melee.."/chains/chain_axe_chain_ml01", type = "chain", parent = weaponParent } }
+        )
+        table.merge_recursive(
+            wc.attachment_models[weaponClass],
             {chain_1h_chain_sword = {model = _item_melee.."/chains/chain_sword_chain_01", type = "chain", parent = weaponParent } }
+        )
+        --table.merge_recursive(
+        --    wc.attachment_models[weaponClass],
+        --    {chain_1h_chain_sword_gold = {model = _item_melee.."/chains/chain_sword_chain_01_gold_01", type = "chain", parent = weaponParent } }
+        --)
+        table.merge_recursive(
+            wc.attachment_models[weaponClass],
+            {chain_1h_chain_sword_gold = {model = _item_melee.."/chains/chain_sword_chain_ml01", type = "chain", parent = weaponParent } }
         )
         table.merge_recursive(
             wc.attachment_models[weaponClass],
             {chain_2h_chain_sword = {model = _item_melee.."/chains/2h_chain_sword_chain_01", type = "chain", parent = weaponParent } }
+        )
+        table.merge_recursive(
+            wc.attachment_models[weaponClass],
+            {chain_2h_chain_sword_gold = {model = _item_melee.."/chains/2h_chain_sword_chain_01_gold_01", type = "chain", parent = weaponParent } }
         )
         -- ########################################
         -- Inject fixes
@@ -181,21 +209,21 @@ function mod.on_all_mods_loaded()
         --)
         table.prepend(
             wc.anchors[weaponClass].fixes, {
-                {   dependencies =  { "chain_chainaxe" },
+                {   dependencies =  { "chain_chainaxe|chain_chainaxe_gold" },
                     chain =         { offset = true, position = vector3_box(0.0, 0.0, 0.0), rotation = vector3_box(0, 0, 0), scale = vector3_box(1.0, 1.0, 1.0) },
                 },
             }
         )
         table.prepend(
             wc.anchors[weaponClass].fixes, {
-                {   dependencies =  { "chain_2h_chain_sword" },
+                {   dependencies =  { "chain_1h_chain_sword|chain_1h_chain_sword_gold" },
                     chain =         { offset = true, position = vector3_box(0.0, 0.0, 0.0), rotation = vector3_box(0, 0, 0), scale = vector3_box(1.0, 1.0, 1.0) },
                 },
             }
         )
         table.prepend(
             wc.anchors[weaponClass].fixes, {
-                {   dependencies =  { "chain_2h_chain_sword" },
+                {   dependencies =  { "chain_2h_chain_sword|chain_2h_chain_sword_gold" },
                     chain =         { offset = true, position = vector3_box(0.0, 0.0, 0.0), rotation = vector3_box(0, 0, 0), scale = vector3_box(1.0, 1.0, 1.0) },
                 },
             }
@@ -207,8 +235,11 @@ function mod.on_all_mods_loaded()
         wc.chain_list = {
             "chain_default",
             "chain_chainaxe",
+            "chain_chainaxe_gold",
+            "chain_1h_chain_sword",
+            --"chain_1h_chain_sword_gold",
             "chain_2h_chain_sword",
-            "chain_2h_chain_sword",
+            "chain_2h_chain_sword_gold",
         }
     end -- Ends for loop that iterates over most melee weapons
     -- ########################################
