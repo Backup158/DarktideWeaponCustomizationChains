@@ -113,19 +113,19 @@ function mod.on_all_mods_loaded()
         -- First time creating chains for these, so I need a default unequipped
         table.insert(
             wc.attachment[weaponClass].chain,
-            {id = "chain_default", name = "Default", no_randomize = false}
+            {id = "chain_default", name = mod:localize("attachment_name_default"), no_randomize = false}
         )
         table.insert(
             wc.attachment[weaponClass].chain,
-            {id = "chain_chainaxe", name = "Chain Axe Chain", no_randomize = true}
+            {id = "chain_chainaxe", name = mod:localize("attachment_name_chainaxe"), no_randomize = true}
         )
         table.insert(
             wc.attachment[weaponClass].chain,
-            {id = "chain_chainaxe_gold", name = "Chain Axe Chain (Gold)", no_randomize = true}
+            {id = "chain_chainaxe_gold", name = mod:localize("attachment_name_chainaxe_gold"), no_randomize = true}
         )
         table.insert(
             wc.attachment[weaponClass].chain,
-            {id = "chain_1h_chain_sword", name = "1h Chain Sword Chain", no_randomize = true}
+            {id = "chain_1h_chain_sword", name = mod:localize("attachment_name_1h_chainsword"), no_randomize = true}
         )
         --table.insert(
         --    wc.attachment[weaponClass].chain,
@@ -133,11 +133,11 @@ function mod.on_all_mods_loaded()
         --)
         table.insert(
             wc.attachment[weaponClass].chain,
-            {id = "chain_2h_chain_sword", name = "2h Chain Sword Chain", no_randomize = true}
+            {id = "chain_2h_chain_sword", name = mod:localize("attachment_name_2h_chainsword"), no_randomize = true}
         )
         table.insert(
             wc.attachment[weaponClass].chain,
-            {id = "chain_2h_chain_sword_gold", name = "2h Chain Sword Chain (Gold)", no_randomize = true}
+            {id = "chain_2h_chain_sword_gold", name = mod:localize("attachment_name_2h_chainsword_gold"), no_randomize = true}
         )
         -- ########################################
         -- Inject attachment model
