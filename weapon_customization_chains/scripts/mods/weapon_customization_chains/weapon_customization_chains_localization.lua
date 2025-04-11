@@ -33,26 +33,32 @@ local localizations = {
 	},
 	attachment_name_default = {
 		en = "Default",
+		["zh-cn"] = "默认",
 	},
 	attachment_name_chainaxe = {
 		en = "Chain Axe Chain",
+		["zh-cn"] = "链锯斧链条",
 	},
 	attachment_name_chainaxe_gold = {
 		en = "Chain Axe Chain (Gold)",
+		["zh-cn"] = "链锯斧链条（金色）",
 	},
 	attachment_name_1h_chainsword = {
 		en = "1h Chain Sword Chain",
+		["zh-cn"] = "链锯剑链条",
 	},
 	-- 1h Chainsword Gold is unused
 	--attachment_name_1h_chainsword_gold = {
 	--	en = "1h Chain Sword Chain (Gold)",
+	--	["zh-cn"] = "链锯剑链条（金色）",
 	--},
 	attachment_name_2h_chainsword = {
 		en = "2h Chain Sword Chain",
-		["zh-cn"] = "双手链锯剑链条",
+		["zh-cn"] = "重型开膛剑链条",
 	},
 	attachment_name_2h_chainsword_gold = {
 		en = "2h Chain Sword Chain (Gold)",
+		["zh-cn"] = "重型开膛剑链条（金色）",
 	},
 }
 
